@@ -4,3 +4,10 @@
   justify-content: center;
   gap: 16px;
 }
+
+@media screen and (max-width: 900px)  {
+  .profile__info {
+    padding-top: 22.25px;
+    align-items: center;
+  }
+}

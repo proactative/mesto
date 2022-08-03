@@ -6,3 +6,11 @@
   border-radius: 2px;
   align-self: center;
 }
+
+/*
+@media screen and (max-width: 900px)  {
+  .profile__addButton {
+    width: 100%;
+  }
+}
+*/

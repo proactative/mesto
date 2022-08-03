@@ -6,4 +6,12 @@
   color: #FFFFFF;
   margin-block-start: 0;
   margin-block-end: 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 900px)  {
+  .profile__text {
+    text-align: center;
+    padding-bottom: 36px;
+  }
 }
