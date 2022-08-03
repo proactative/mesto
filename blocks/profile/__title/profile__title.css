@@ -1,0 +1,10 @@
+.profile__title {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+  color: #FFFFFF;
+}
