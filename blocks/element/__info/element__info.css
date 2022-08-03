@@ -1,0 +1,12 @@
+.element__info {
+  width: 282px;
+  height: 79px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 21px;
+  padding-right: 15px ;
+  box-sizing: border-box;
+}
