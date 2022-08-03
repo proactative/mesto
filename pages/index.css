@@ -11,3 +11,7 @@
 /*header*/
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/header/__line/header__line.css);
+
+
+/*footer*/
+@import url(../blocks/footer/__copyright/footer__copyright.css);
