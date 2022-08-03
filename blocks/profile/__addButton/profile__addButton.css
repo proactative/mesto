@@ -1,7 +1,7 @@
-.addButton {
+.profile__addButton {
   width: 150px;
   height: 50px;
-  color: #000;
+  background-color: #000;
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   align-self: center;
