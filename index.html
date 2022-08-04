@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -88,7 +89,7 @@
           <div class="element">
             <img class="element__image" src=" " alt="">
             <div class="element__info">
-              <h2 class="element__title">Карачаево-Ч...</h2>
+              <h2 class="element__title">Карачаево-Черкессия</h2>
               <a href="" class="element__link">
                 <img class="element__link-img" src="./images/element-img.svg">
               </a>
@@ -104,11 +105,23 @@
     </div>
   </div>
 
-  <div class="popup">
-    <form action="" class="popup__container">
 
+  <div class="popup popup_opened">
+
+    <form action="" class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <div class="popup__inputs">
+        <input class="popup__input" type="text" value="Жак-Ив Кусто">
+        <input class="popup__input" type="text" value="Исследователь океана">
+      </div>
+      <input type='submit' class="popup__button" value="Сохранить">
     </form>
+
+    <a class="popup__close-link" href="#"></a>
+
   </div>
+
   <script src="index.js"></script>
 </body>
+
 </html>

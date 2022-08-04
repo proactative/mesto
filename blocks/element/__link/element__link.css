@@ -1,0 +1,11 @@
+.element__link {
+
+}
+
+.element__link:hover {
+
+}
+
+.element__link:active {
+  background-color: #000;
+}
