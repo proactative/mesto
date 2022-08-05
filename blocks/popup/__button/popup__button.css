@@ -4,3 +4,7 @@
   width: 100%;
   color: #fff;
 }
+
+.popup__button:hover {
+  opacity: .8;
+}

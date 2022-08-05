@@ -5,3 +5,9 @@
   background-color: #000;
   align-self: center;
 }
+
+@media screen and (max-width: 900px) {
+  .profile__editButton {
+    position: absolute;
+  }
+}

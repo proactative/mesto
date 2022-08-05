@@ -3,7 +3,7 @@
   background-image: url('../../../images/popup-closeIcon.png');
   width: 32px;
   height: 32px;
-  position: relative;
-  bottom: calc(8px + 330px/2);
-  right: 8px;
+  position: absolute;
+  bottom: calc(50vh + 330px / 2 + 8px);
+  left: calc(50vw + 430px / 2 + 8px);
 }

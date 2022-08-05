@@ -1,13 +1,15 @@
 .header__logo {
+  box-sizing: border-box;
   padding-top: 45px;
   width: 142px;
   height: 33px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .header__logo {
     padding-top: 45px;
-    width: 142px;
-    height: 33px;
+    padding-left: 28px;
+    width: 103.74px;
+    height: 24.4px;
   }
 }
