@@ -16,7 +16,7 @@
 
 
 ## **Ссылка на GitHub Pages**
-
+* https://proactative.github.io/mesto/
 
 
 ## **QR-код**
