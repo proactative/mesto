@@ -9,9 +9,16 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 900px)  {
+@media screen and (max-width: 900px) {
   .profile__text {
     text-align: center;
-    padding-bottom: 36px;
+    margin-bottom: 33px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .profile__text {
+    font-size: 14px;
+    line-height: 17px;
   }
 }

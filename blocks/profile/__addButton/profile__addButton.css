@@ -5,12 +5,20 @@
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   align-self: center;
+  background-image: url("../../../images/addButton-img.svg");
+  background-repeat: no-repeat;
+  background-size: 22px;
+  background-position: center;
 }
 
-/*
-@media screen and (max-width: 900px)  {
+.profile__addButton:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 900px) {
   .profile__addButton {
-    width: 100%;
+    width: 282px;
+    align-self: center;
+    background-size: 16px;
   }
 }
-*/

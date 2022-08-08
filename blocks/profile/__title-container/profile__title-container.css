@@ -4,3 +4,9 @@
   margin-right: 244px;
 }
 
+@media screen and (max-width: 900px) {
+  .profile__title-container {
+    margin-right: 0;
+    justify-content: center;
+  }
+}

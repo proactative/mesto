@@ -7,19 +7,24 @@
   font-size: 42px;
   line-height: 1.14;
   color: #FFFFFF;
+  max-width: 294px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-@media screen and (max-width: 900px)  {
+@media screen and (max-width: 900px) {
   .profile__title {
     text-align: center;
-    padding-bottom: 36px;
+    margin-bottom: 36px;
   }
 }
 
-
-@media screen and (max-width: 600px)  {
+@media screen and (max-width: 600px) {
   .profile__title {
     font-size: 27px;
-    line-height: 33px;
+    line-height: 45px;
+    margin-bottom: 0;
+    max-width: 189px;
   }
 }

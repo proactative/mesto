@@ -1,9 +1,21 @@
 .popup__close-link {
   display: block;
-  background-image: url('../../../images/popup-closeIcon.png');
-  width: 32px;
   height: 32px;
+  width: 32px;
+  background-image: url('../../../images/popup-closeIcon.png');
+  background-size: 32px;
+  background-repeat: no-repeat;
   position: absolute;
-  bottom: calc(50vh + 330px / 2 + 8px);
-  left: calc(50vw + 430px / 2 + 8px);
+  bottom: calc(50vh + 330px / 2 - 24px);
+  left: calc(50vw + 430px / 2 + 7px);
+}
+
+@media screen and (max-width: 600px) {
+  .popup__close-link {
+    bottom: calc(50vh + 322px / 2 + 59px);
+    left: calc(50vw + 282px / 2 - 20px);
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+  }
 }

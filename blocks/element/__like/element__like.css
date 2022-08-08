@@ -1,9 +1,12 @@
 .element__like {
   border: none;
+  padding: 0;
   width: 22px;
   height: 18px;
   background-image: url('../../../images/element-img.svg');
   background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .element__like:hover {
