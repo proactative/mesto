@@ -15,7 +15,6 @@
 
       <header class="header">
         <img src="./images/header-logo.svg" alt="логотип" class="header__logo">
-        <div class="header__line"></div>
       </header>
 
       <main class="content">
@@ -25,60 +24,60 @@
           <div class="profile__info">
             <div class="profile__title-container">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button class="profile__editButton"></button>
+              <button class="profile__edit-button" type="button"></button>
             </div>
             <p class="profile__text">Исследователь океана</p>
           </div>
-          <button class="profile__addButton"></button>
+          <button class="profile__add-button" type="button"></button>
         </section>
 
         <section class="elements">
 
           <article class="element">
-            <img class="element__image" src="./images/element-machu-picchu.jpg " alt="фотография ">
+            <img class="element__image" src="./images/element-machu-picchu.jpg " alt="Мачу-Пикчу">
             <div class="element__info">
               <h2 class="element__title">Мачу-Пикчу</h2>
-              <button class="element__like"></button>
+              <button class="element__like" type="button"></button>
             </div>
           </article>
 
           <article class="element">
-            <img class="element__image" src="./images/element-pamukkale.jpg" alt="">
+            <img class="element__image" src="./images/element-pamukkale.jpg" alt="Памуккале">
             <div class="element__info">
               <h2 class="element__title">Памуккале</h2>
-              <button class="element__like"></button>
+              <button class="element__like" type="button"></button>
             </div>
           </article>
 
           <article class="element">
-            <img class="element__image" src="./images/element-great-wall-of-chinajpg.jpg" alt="">
+            <img class="element__image" src="./images/element-great-wall-of-chinajpg.jpg" alt="Великая Китайская стена">
             <div class="element__info">
               <h2 class="element__title">Великая Китайская стена</h2>
-              <button class="element__like"></button>
+              <button class="element__like" type="button"></button>
             </div>
           </article>
 
           <article class="element">
-            <img class="element__image" src="./images/element-great-barrier-reefjpg.jpg" alt="">
+            <img class="element__image" src="./images/element-great-barrier-reefjpg.jpg" alt="Большой Барьерный риф">
             <div class="element__info">
               <h2 class="element__title">Большой Барьерный риф</h2>
-              <button class="element__like"></button>
+              <button class="element__like" type="button"></button>
             </div>
           </article>
 
           <article class="element">
-            <img class="element__image" src="./images/element-petra.jpg " alt="">
+            <img class="element__image" src="./images/element-petra.jpg " alt="Петра">
             <div class="element__info">
               <h2 class="element__title">Петра</h2>
-              <button class="element__like"></button>
+              <button class="element__like" type="button"></button>
             </div>
           </article>
 
           <article class="element">
-            <img class="element__image" src="./images/element-northen-lights.jpg " alt="">
+            <img class="element__image" src="./images/element-northen-lights.jpg " alt="Северное сияние">
             <div class="element__info">
               <h2 class="element__title">Заполярье</h2>
-              <button class="element__like"></button>
+              <button class="element__like" type="button"></button>
             </div>
           </article>
 
@@ -86,24 +85,26 @@
       </main>
 
       <footer class="footer">
-        <p class="footer__copyright">© 2020 Mesto Russia</p>
+        <p class="footer__copyright">© 2022 Татьяна Парфенюк</p>
       </footer>
     </div>
   </div>
 
   <div class="popup">
-    <form action="#" class="popup__container">
-      <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
-      <div class="popup__inputs">
-        <input class="popup__input popup__input_type_name" type="text" value="Жак-Ив Кусто">
-        <input class="popup__input popup__input_type_job" type="text" value="Исследователь океана">
-      </div>
-      <button class="popup__button" type="submit">Сохранить</button>
-    </form>
-    <a class="popup__close-link" href="#"></a>
+    <div class="popup__wrapper">
+      <form name="form" action="#" class="popup__container">
+        <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
+        <div class="popup__inputs">
+          <input class="popup__input popup__input_type_name" name="full-name" type="text" value="">
+          <input class="popup__input popup__input_type_job" name="job" type="text" value="">
+        </div>
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close-link" type="button"></button>
+    </div>
   </div>
 
-  <script src="index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>

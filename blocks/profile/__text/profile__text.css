@@ -7,6 +7,10 @@
   margin-block-start: 0;
   margin-block-end: 0;
   box-sizing: border-box;
+  text-overflow: ellipsis;
+  max-width: 280px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 900px) {

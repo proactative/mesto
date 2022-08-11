@@ -12,11 +12,11 @@
 
 @media screen and (max-width: 600px) {
   .footer__copyright {
-  box-sizing: border-box;
-  padding-left: 19px;
-  font-size: 14px;
-  line-height: 17px;
-  padding-top: 48px;
-  padding-bottom: 35px;
+    box-sizing: border-box;
+    padding-left: 19px;
+    font-size: 14px;
+    line-height: 17px;
+    padding-top: 48px;
+    padding-bottom: 35px;
   }
 }
