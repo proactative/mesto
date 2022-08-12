@@ -7,7 +7,8 @@ let editButton = profile.querySelector('.profile__edit-button');
 let person = profile.querySelector('.profile__title');
 let job = profile.querySelector('.profile__text');
 let popup = document.querySelector('.popup');
-let form = popup.querySelector('.popup__container');
+let popupContainer = popup.querySelector('.popup__container');
+let form = popupContainer.querySelector('.popup__form');
 let nameInput = form.querySelector('.popup__input_type_name');
 let jobInput = form.querySelector('.popup__input_type_job');
 
