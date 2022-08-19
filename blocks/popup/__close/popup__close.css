@@ -1,4 +1,4 @@
-.popup__close-link {
+.popup__close {
   display: block;
   height: 32px;
   width: 32px;
@@ -13,12 +13,12 @@
   cursor: pointer;
 }
 
-.popup__close-link:hover {
+.popup__close:hover {
   opacity: .6;
 }
 
 @media screen and (max-width: 600px) {
-  .popup__close-link {
+  .popup__close {
     top: -40px;
     right: 0;
     background-size: 20px;
