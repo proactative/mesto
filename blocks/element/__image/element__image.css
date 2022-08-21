@@ -5,3 +5,11 @@
   border-top-left-radius: 10px;
   object-fit: cover;
 }
+
+.element__image:hover {
+  opacity: .6;
+}
+
+.element__image[alt] {
+  color: #fff;
+}
