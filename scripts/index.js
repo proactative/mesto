@@ -12,7 +12,7 @@ const nameInput = formEditProfile.querySelector('.popup__input_type_name');
 const jobInput = formEditProfile.querySelector('.popup__input_type_job');
 
 /*for function closePopup*/
-const closeButton = popupEditProfile.querySelector('.popup__close_type_edit-profile');
+const editProfileCloseButton = popupEditProfile.querySelector('.popup__close_type_edit-profile');
 
 /*for function openAddForm*/
 const addButton = document.querySelector('.profile__add-button');
@@ -29,6 +29,7 @@ const templateElement = document.querySelector('.template');
 const placeNameInput = document.querySelector('.popup__input_type_place-name');
 const placeLinkInput = document.querySelector('.popup__input_type_link');
 const submitElementButton = document.querySelector('.popup__button_type_submit');
+const addElementForm = document.querySelector('.popup__form_type_add-form');
 
 /*for functions zoomPhoto & closeZoomPhoto*/
 const popupZoomPhoto = document.querySelector('.popup_type_zoom-photo');
@@ -50,8 +51,8 @@ function openPopup(neededPopup) {
   neededPopup.classList.add('popup_opened');
 }
 
-function closePopup(e) {
-  e.target.closest('.popup').classList.remove('popup_opened');
+function closePopup(neededPopup) {
+  neededPopup.classList.remove('popup_opened');
 }
 
 function zoomPhoto(e) {
@@ -59,7 +60,7 @@ function zoomPhoto(e) {
   figureImage.src = e.target.closest('.element').querySelector('.element__image').src;
   figureCaption.textContent = e.target.closest('.element').querySelector('.element__title').textContent;
 }
-closeZoomButton.addEventListener('click', closePopup);
+closeZoomButton.addEventListener('click',() => closePopup(popupZoomPhoto));
 
 function createCard(cardData) {
   const newCard = templateElement.content.querySelector('.element').cloneNode(true);
@@ -89,22 +90,22 @@ function addCard(cardData) {
 initialCards.forEach(addCard);
 
 /*редактирование профиля*/
-function openEditProfileForm() {
+function openEditProfilePopup() {
   openPopup(popupEditProfile);
   nameInput.value = personField.textContent;
   jobInput.value = jobField.textContent;
 }
 
-function formSubmitHandler(e) {
+function editProfileFormSubmitHandler(e) {
   e.preventDefault();
   personField.textContent = nameInput.value;
   jobField.textContent = jobInput.value;
-  closePopup(e);
+  closePopup(popupEditProfile);
 }
 
-editProfileButton.addEventListener('click', openEditProfileForm);
-closeButton.addEventListener('click', closePopup);
-formEditProfile.addEventListener('submit', formSubmitHandler);
+editProfileButton.addEventListener('click', openEditProfilePopup);
+editProfileCloseButton.addEventListener('click', () => closePopup(popupEditProfile));
+formEditProfile.addEventListener('submit', editProfileFormSubmitHandler);
 
 /*добавление новой карточки*/
 function addElement(e) {
@@ -113,10 +114,10 @@ function addElement(e) {
     name: placeNameInput.value,
     link: placeLinkInput.value
   });
-  document.querySelector('.popup__form_type_add-form').reset();
-  closePopup(e);
+  addElementForm.reset();
+  closePopup(popupAddElement);
 }
 
 addButton.addEventListener('click', () => openPopup(popupAddElement));
-closeAddButton.addEventListener('click', closePopup);
+closeAddButton.addEventListener('click', () => closePopup(popupAddElement));
 popupAddElement.addEventListener('submit', addElement);
