@@ -1,6 +1,12 @@
 .popup__inputs {
-  margin-top: 18px;
-  margin-bottom: 47.5px;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-block-start: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  padding-block-end: 0;
+  margin-top: 39px;
+  margin-bottom: 29px;
   padding: 0;
   border: 0;
 }
