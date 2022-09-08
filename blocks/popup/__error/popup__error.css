@@ -6,4 +6,5 @@
   visibility: hidden;
   display: block;
   margin-top: 5px;
+  min-height: 30px;
 }

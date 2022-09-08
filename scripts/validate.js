@@ -74,3 +74,17 @@ function enableValidation(config) {
 
 enableValidation(validationConfig);
 
+/*reseting validation in case of incorrect filling inputs and closing the form*/
+function resetValidation(config, popup) {
+  const errors = Array.from(popup.querySelectorAll('.popup__error'));
+  const inputs = Array.from(popup.querySelectorAll(config.inputSelector));
+
+  inputs.forEach((input) => {
+    input.classList.remove(config.inputErrorClass);
+  });
+
+  errors.forEach((error) => {
+    error.textContent = '\u00A0';
+  });
+
+}
