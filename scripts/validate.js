@@ -86,5 +86,4 @@ function resetValidation(config, popup) {
   errors.forEach((error) => {
     error.textContent = '\u00A0';
   });
-
 }
