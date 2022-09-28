@@ -1,3 +1,7 @@
+import  {initialCards} from './cards.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 /*for function openPopup*/
 const pageContainer = document.querySelector('.page__container');
 const profile = pageContainer.querySelector('.profile');
@@ -48,13 +52,12 @@ const validationConfig = {
 };
 /*------------------------------------functions-----------------------------*/
 
-function toggleLike(e) {
-  e.target.classList.toggle('element__like_active');
-}
+//validation
+const editFormValidation = new FormValidator(validationConfig, popupEditProfile);
+const addFormValidation = new FormValidator(validationConfig, popupAddElement);
 
-function deleteCard(e) {
-  e.target.closest('.element').remove();
-}
+editFormValidation.enableValidation();
+addFormValidation.enableValidation();
 
 /*closing popup via the key escape*/
 function closePopupViaEscape(e) {
@@ -73,33 +76,17 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupViaEscape);
 }
 
-function zoomPhoto(e) {
+function zoomPhoto(name, link) {
   openPopup(popupZoomPhoto);
-  figureImage.src = e.target.closest('.element').querySelector('.element__image').src;
-  figureCaption.textContent = e.target.closest('.element').querySelector('.element__title').textContent;
-  figureImage.setAttribute('alt', document.querySelector('.element__title').textContent);
+  figureImage.src = link;
+  figureCaption.textContent = name;
+  figureImage.setAttribute('alt', name);
 }
 closeZoomButton.addEventListener('click', () => closePopup(popupZoomPhoto));
 
-function createCard(cardData) {
-  const newCard = templateElement.content.querySelector('.element').cloneNode(true);
-  const newCardImage = newCard.querySelector('.element__image');
-  const newCardTitle = newCard.querySelector('.element__title');
-  const newCardLikeButton = newCard.querySelector('.element__like');
-  const newCardDeleteButton = newCard.querySelector('.element__delete-button');
-  newCardImage.src = cardData.link;
-  newCardImage.alt = cardData.name;
-  newCardTitle.textContent = cardData.name;
-  //adding event-listeners
-  newCardLikeButton.addEventListener('click', toggleLike);
-  newCardDeleteButton.addEventListener('click', deleteCard);
-  newCardImage.addEventListener('click', zoomPhoto);
-  return newCard;
-}
-
 function addCard(cardData) {
- const newCard = createCard(cardData);
-  elementsContainer.prepend(newCard);
+  const newCard = new Card(cardData, templateElement, zoomPhoto);
+  elementsContainer.prepend(newCard.createCard());
 }
 
 /*downloading cards from the array*/
@@ -158,8 +145,11 @@ function addElement(e) {
 addButton.addEventListener('click', () =>  {
   openPopup(popupAddElement);
   addElementForm.reset();
-  resetValidation(validationConfig, popupAddElement);
-  disableSubmitButton(submitElementButton, validationConfig);
+  addFormValidation.resetValidation();
+  addFormValidation._disableSubmitButton();
 });
 closeAddButton.addEventListener('click', () => closePopup(popupAddElement));
 popupAddElement.addEventListener('submit', addElement);
+
+
+
