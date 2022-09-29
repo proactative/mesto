@@ -25,7 +25,7 @@ export default class FormValidator {
   }
 
   //choosing error-mode or no-error mode
-  _checkInputValidity(input) {
+  _toggleInputErrorState(input) {
     if (!input.validity.valid) {
       this._showInputError(input, input.validationMessage);
     } else {
@@ -34,7 +34,7 @@ export default class FormValidator {
   }
 
   //handlings of the button submit
-  _disableSubmitButton() {
+  disableSubmitButton() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.setAttribute("disabled", true);
   }
@@ -52,7 +52,7 @@ export default class FormValidator {
 
   _toggleSubmitButtonState() {
     if (this._hasInvalidInput()) {
-      this._disableSubmitButton();
+      this.disableSubmitButton();
     } else {
       this._enableSubmitButton();
     }
@@ -62,7 +62,7 @@ export default class FormValidator {
   _setHandlers() {
     this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
-        this._checkInputValidity(input);
+        this._toggleInputErrorState(input);
 
         this._toggleSubmitButtonState();
       });
@@ -79,14 +79,14 @@ export default class FormValidator {
 
   /*reseting validation in case of incorrect filling inputs and closing the form*/
   resetValidation() {
-    const errors = Array.from(this._form.querySelectorAll('.popup__error'));
+    const errors = this._form.querySelectorAll('.popup__error');
 
     this._inputs.forEach((input) => {
       input.classList.remove(this._inputErrorClass);
     })
 
     errors.forEach((error) => {
-      error.textContent = '\u00A0';
+      error.textContent = '';
     })
   }
 }

@@ -1,4 +1,4 @@
-import  {initialCards} from './cards.js';
+import { initialCards } from './cards.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
@@ -97,12 +97,11 @@ function openEditProfilePopup() {
   openPopup(popupEditProfile);
   nameInput.value = personField.textContent;
   jobInput.value = jobField.textContent;
-  resetValidation(validationConfig, popupEditProfile);
-  enableSubmitButton(submitButtonEditProfile, validationConfig);
+  editFormValidation.resetValidation();
+  editFormValidation.disableSubmitButton();
 }
 
-function editProfileFormSubmitHandler(e) {
-  e.preventDefault();
+function editProfileFormSubmitHandler() {
   personField.textContent = nameInput.value;
   jobField.textContent = jobInput.value;
   closePopup(popupEditProfile);
@@ -115,21 +114,11 @@ formEditProfile.addEventListener('submit', editProfileFormSubmitHandler);
 /*closing popup via clicking on overlay*/
 const popups = Array.from(document.querySelectorAll('.popup'));
 popups.forEach((popup) => {
-  popup.addEventListener('click', () => {
-    closePopup(popup);
+  popup.addEventListener('click', (e) => {
+    if (e.target.classList.contains('popup')) {
+      closePopup(popup);
+    }
   });
-});
-
-/*preventing bubbling*/
-const containers = Array.from(document.querySelectorAll('.popup__container'));
-const wrapper = document.querySelector('.popup__wrapper');
-containers.forEach((container) => {
-  container.addEventListener('click', (evt) => {
-    evt.stopPropagation();
-  });
-});
-wrapper.addEventListener('click', (evt) => {
-  evt.stopPropagation();
 });
 
 /*adding a new card*/
@@ -142,11 +131,11 @@ function addElement(e) {
   closePopup(popupAddElement);
 }
 
-addButton.addEventListener('click', () =>  {
+addButton.addEventListener('click', () => {
   openPopup(popupAddElement);
   addElementForm.reset();
   addFormValidation.resetValidation();
-  addFormValidation._disableSubmitButton();
+  addFormValidation.disableSubmitButton();
 });
 closeAddButton.addEventListener('click', () => closePopup(popupAddElement));
 popupAddElement.addEventListener('submit', addElement);
