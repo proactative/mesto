@@ -139,6 +139,3 @@ addButton.addEventListener('click', () => {
 });
 closeAddButton.addEventListener('click', () => closePopup(popupAddElement));
 popupAddElement.addEventListener('submit', addElement);
-
-
-

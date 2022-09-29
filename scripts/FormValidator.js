@@ -76,7 +76,6 @@ export default class FormValidator {
     this._setHandlers();
   }
 
-
   /*reseting validation in case of incorrect filling inputs and closing the form*/
   resetValidation() {
     const errors = this._form.querySelectorAll('.popup__error');
