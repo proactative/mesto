@@ -17,6 +17,7 @@ const jobInput = formEditProfile.querySelector('.popup__input_type_job');
 const submitButtonEditProfile = document.querySelector('.popup__button_type_edit-profile');
 
 /*for function closePopup*/
+export const popupCloseButton = document.querySelector('.popup__close');
 const editProfileCloseButton = popupEditProfile.querySelector('.popup__close_type_edit-profile');
 
 /*for function openAddForm*/
