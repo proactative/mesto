@@ -4,6 +4,7 @@ export default class Card {
     this._link = cardData.link;
     this._templateSelector = templateSelector;
     this._zoomPhoto = zoomPhoto;
+    this.createCard();
   }
 
   _toggleLike() {
