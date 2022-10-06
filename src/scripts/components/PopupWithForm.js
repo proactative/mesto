@@ -23,9 +23,15 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    super.setEventListeners(); //перезаписывает родительский метод
+    super.setEventListeners();
 
-    const submitButton = this._popup.querySelector('.popup__button');
-    submitButton.addEventListener('submit', this._formSubmit.bind(this));
+    const form = this._popup.querySelector('.popup__form');
+    form.addEventListener(
+      'submit',
+      () => {
+        this._formSubmit(this._getInputValues());
+      }
+    );
+
   }
 }

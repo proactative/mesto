@@ -109,12 +109,7 @@ function addCard(cardData) {
   // editFormValidation.disableSubmitButton();
 //}
 
-function editProfileFormSubmitHandler() { //оставляем как callback!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // personField.textContent = nameInput.value;
-  // jobField.textContent = jobInput.value;
-  // closePopup(popupEditProfile);
-  alert('lala')
-}
+
 
 //editProfileButton.addEventListener('click', openEditProfilePopup);
 //editProfileCloseButton.addEventListener('click', () => closePopup(popupEditProfile));
@@ -174,25 +169,33 @@ const section = new Section(
 );
 section.renderItems();
 
+//userInfo
+const userInfo = new UserInfo({nameSelector: personField, jobSelector: jobField });
 
+function editProfileFormSubmitHandler(formNewInfo) {
+  userInfo.setUserInfo({name: formNewInfo["full-name"], job: formNewInfo.job});
+  editProfilePopup.close();
+}
 
 //edit profile
 const editProfilePopup = new PopupWithForm(popupEditProfile, editProfileFormSubmitHandler);
 editProfilePopup.setEventListeners();
 
-
 //открытие по иконке
 editProfileButton.addEventListener('click', () =>  {
   editProfilePopup.open();
-  nameInput.value = personField.textContent;
-  jobInput.value = jobField.textContent;
+
+  const currentUserInfo = userInfo.getUserInfo();
+  nameInput.value = currentUserInfo.name;
+  jobInput.value = currentUserInfo.job;
+
   editFormValidation.resetValidation();
   editFormValidation.disableSubmitButton();
 });
 
 
 //add element form
-const addElementPopup = new PopupWithForm(popupAddElement, editProfileFormSubmitHandler);
+const addElementPopup = new PopupWithForm(popupAddElement, );
 addElementPopup.setEventListeners();
 
 //открытие по иконке
@@ -201,10 +204,5 @@ addButton.addEventListener('click', () => {
     addElementForm.reset();
     addFormValidation.resetValidation();
     addFormValidation.disableSubmitButton();
-  });
+});
 
-
-//userInfo
-//const userInfo = new UserInfo({ personField, jobField });
-//userInfo.getUserInfo();
-//userInfo.setUserInfo();
