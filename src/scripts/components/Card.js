@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(cardData, templateSelector, zoomPhoto) {
+  constructor(cardData, templateSelector, handleCardClick) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._templateSelector = templateSelector;
-    this._zoomPhoto = zoomPhoto;
+    this._handleCardClick= handleCardClick;
     this.createCard();
   }
 
@@ -15,8 +15,8 @@ export default class Card {
     this._newCard.remove();
   }
 
-  _zoomThisPhoto() {
-    this._zoomPhoto(this._name, this._link);
+  _handleThisCardClick() {
+    this._handleCardClick(this._name, this._link);
   }
 
   createCard() {
@@ -32,10 +32,9 @@ export default class Card {
     this._newCardImage.alt = this._name;
     this._newCardTitle.textContent = this._name;
 
-    //слушатели
     this._newCardLikeButton.addEventListener('click', () => this._toggleLike());
     this._newCardDeleteButton.addEventListener('click',() => this._deleteCard());
-    this._newCardImage.addEventListener('click', () => this._zoomThisPhoto());
+    this._newCardImage.addEventListener('click', () => this._handleThisCardClick());
 
     return this._newCard;
   }
