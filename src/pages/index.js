@@ -1,3 +1,5 @@
+import './index.css';
+
 import { initialCards } from '../scripts/cards.js';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -115,3 +117,5 @@ addButton.addEventListener('click', () => {
   addFormValidation.resetValidation();
   addFormValidation.disableSubmitButton();
 });
+
+
