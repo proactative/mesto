@@ -21,6 +21,7 @@ import {
   addElementForm,
   popupZoomPhoto,
   validationConfig,
+  popupEditProfile,
 } from '../scripts/utils/constants.js';
 
 //validation

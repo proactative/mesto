@@ -4,7 +4,7 @@ export const editProfileButton = profile.querySelector('.profile__edit-button');
 export const personField = profile.querySelector('.profile__title');
 export const jobField = profile.querySelector('.profile__text');
 
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const formEditProfile = popupEditProfile.querySelector('.popup__form');
 export const nameInput = formEditProfile.querySelector('.popup__input_type_name');
 export const jobInput = formEditProfile.querySelector('.popup__input_type_job');
