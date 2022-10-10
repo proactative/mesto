@@ -8,30 +8,20 @@ import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import Section from '../scripts/components/Section.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 
-const pageContainer = document.querySelector('.page__container');
-const profile = pageContainer.querySelector('.profile');
-const editProfileButton = profile.querySelector('.profile__edit-button');
-const personField = profile.querySelector('.profile__title');
-const jobField = profile.querySelector('.profile__text');
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-const formEditProfile = popupEditProfile.querySelector('.popup__form');
-const nameInput = formEditProfile.querySelector('.popup__input_type_name');
-const jobInput = formEditProfile.querySelector('.popup__input_type_job');
-const addButton = document.querySelector('.profile__add-button');
-const popupAddElement = document.querySelector('.popup_type_add-element');
-const elementsContainer = document.querySelector('.elements');
-const templateElement = document.querySelector('.template');
-const addElementForm = document.querySelector('.popup__form_type_add-form');
-const popupZoomPhoto = document.querySelector('.popup_type_zoom-photo');
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-};
+import {
+  editProfileButton,
+  personField,
+  jobField,
+  nameInput,
+  jobInput,
+  addButton,
+  popupAddElement,
+  elementsContainer,
+  templateElement,
+  addElementForm,
+  popupZoomPhoto,
+  validationConfig,
+} from '../scripts/utils/constants.js';
 
 //validation
 const editFormValidation = new FormValidator(validationConfig, popupEditProfile);
