@@ -64,7 +64,7 @@ function editProfileFormSubmitHandler(formNewInfo) {
 }
 
 //edit profile
-const editProfilePopup = new PopupWithForm(popupEditProfile, editProfileFormSubmitHandler);
+const editProfilePopup = new PopupWithForm('.popupEditProfile', editProfileFormSubmitHandler);
 editProfilePopup.setEventListeners();
 
 //оpen via clicking on icon
@@ -98,7 +98,7 @@ function addElementFormSubmitHandler(data) {
 }
 
 //add element form
-const addElementPopup = new PopupWithForm(popupAddElement, addElementFormSubmitHandler);
+const addElementPopup = new PopupWithForm('.popupAddElement', addElementFormSubmitHandler);
 addElementPopup.setEventListeners();
 
 //открытие по иконке
