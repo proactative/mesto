@@ -32,7 +32,7 @@ const addFormValidation = new FormValidator(validationConfig, popupAddElement);
 addFormValidation.enableValidation();
 
 //zoom photo
-const popupWithImage = new PopupWithImage(popupZoomPhoto);
+const popupWithImage = new PopupWithImage('.popupZoomPhoto');
 popupWithImage.setEventListeners();
 
 //section

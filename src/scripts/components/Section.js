@@ -3,6 +3,7 @@ export default class Section {
     this._items = items;
     this._renderer = renderer;
     this._container = containerSelector;
+    //this._container = document.querySelector(containerSelector);
   }
 
   renderItems() {
