@@ -9,9 +9,9 @@ export default class PopupWithImage extends Popup{
   }
 
   open({name, link}) {
-    super.open();
     this._figureImage.src = link;
     this._figureCaption.textContent = name;
     this._figureImage.setAttribute('alt', name);
+    super.open();
   }
 }
