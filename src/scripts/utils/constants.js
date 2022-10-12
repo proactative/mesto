@@ -11,7 +11,6 @@ export const jobInput = formEditProfile.querySelector('.popup__input_type_job');
 
 export const addButton = document.querySelector('.profile__add-button');
 export const popupAddElement = document.querySelector('.popup_type_add-element');
-//export const elementsContainer = document.querySelector('.elements');
 export const templateElement = document.querySelector('.template');
 export const addElementForm = document.querySelector('.popup__form_type_add-form');
 

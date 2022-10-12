@@ -57,7 +57,7 @@ const section = new Section(
 section.renderItems();
 
 //userInfo
-const userInfo = new UserInfo({ nameSelector: personField, jobSelector: jobField });
+const userInfo = new UserInfo({ name: personField, job: jobField });
 
 function editProfileFormSubmitHandler(formNewInfo) {
   userInfo.setUserInfo({ name: formNewInfo["full-name"], job: formNewInfo.job });
@@ -90,7 +90,7 @@ function addElementFormSubmitHandler(data) {
 const addElementPopup = new PopupWithForm('.popup_type_add-element', addElementFormSubmitHandler);
 addElementPopup.setEventListeners();
 
-//opening via clicking on  the icon
+//open via clicking on the icon
 addButton.addEventListener('click', () => {
   addElementPopup.open();
   addElementForm.reset();
