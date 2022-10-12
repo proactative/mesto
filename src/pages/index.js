@@ -93,15 +93,15 @@ function addElementFormSubmitHandler(data) {
 
   const newData = {name: data['place-name'], link: data['place-link']};
 
-  const newCard = new Card(
-    newData,
-    templateElement,
-    () => {
-      popupWithImage.open(newData);
-    }
-  );
-  const cardElement = newCard.createCard();
-  section.addItem(cardElement);
+  // const newCard = new Card(
+  //   newData,
+  //   templateElement,
+  //   () => {
+  //     popupWithImage.open(newData);
+  //   }
+  // );
+  //const cardElement = newCard.createCard();
+  section.addItem(createCardElement(newData));
 
   //закрытие
   addElementPopup.close();
