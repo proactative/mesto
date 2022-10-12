@@ -34,20 +34,31 @@ addFormValidation.enableValidation();
 const popupWithImage = new PopupWithImage('.popup_type_zoom-photo');
 popupWithImage.setEventListeners();
 
-//section
-const section = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const newCard = new Card(
+function createCardElement(item) {
+const newCard = new Card(
         item,
         templateElement,
         () => {
           popupWithImage.open(item);
         }
       );
-      const cardElement = newCard.createCard();
-      section.addItem(cardElement);
+      return newCard.createCard();
+}
+
+//section
+const section = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      // const newCard = new Card(
+      //   item,
+      //   templateElement,
+      //   () => {
+      //     popupWithImage.open(item);
+      //   }
+      // );
+      // const cardElement = newCard.createCard();
+      section.addItem(createCardElement(item));
     }
   },
   elementsContainer
