@@ -16,7 +16,6 @@ import {
   jobInput,
   addButton,
   popupAddElement,
-  elementsContainer,
   templateElement,
   addElementForm,
   validationConfig,
@@ -50,18 +49,10 @@ const section = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      // const newCard = new Card(
-      //   item,
-      //   templateElement,
-      //   () => {
-      //     popupWithImage.open(item);
-      //   }
-      // );
-      // const cardElement = newCard.createCard();
       section.addItem(createCardElement(item));
     }
   },
-  elementsContainer
+  '.elements'
 );
 section.renderItems();
 
@@ -90,20 +81,8 @@ editProfileButton.addEventListener('click', () => {
 });
 
 function addElementFormSubmitHandler(data) {
-
   const newData = {name: data['place-name'], link: data['place-link']};
-
-  // const newCard = new Card(
-  //   newData,
-  //   templateElement,
-  //   () => {
-  //     popupWithImage.open(newData);
-  //   }
-  // );
-  //const cardElement = newCard.createCard();
   section.addItem(createCardElement(newData));
-
-  //закрытие
   addElementPopup.close();
 }
 
@@ -111,12 +90,10 @@ function addElementFormSubmitHandler(data) {
 const addElementPopup = new PopupWithForm('.popup_type_add-element', addElementFormSubmitHandler);
 addElementPopup.setEventListeners();
 
-//открытие по иконке
+//opening via clicking on  the icon
 addButton.addEventListener('click', () => {
   addElementPopup.open();
   addElementForm.reset();
   addFormValidation.resetValidation();
   addFormValidation.disableSubmitButton();
 });
-
-
