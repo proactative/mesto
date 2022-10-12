@@ -19,7 +19,6 @@ import {
   elementsContainer,
   templateElement,
   addElementForm,
-  popupZoomPhoto,
   validationConfig,
   popupEditProfile,
 } from '../scripts/utils/constants.js';
@@ -64,7 +63,7 @@ function editProfileFormSubmitHandler(formNewInfo) {
 }
 
 //edit profile
-const editProfilePopup = new PopupWithForm('.popupEditProfile', editProfileFormSubmitHandler);
+const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', editProfileFormSubmitHandler);
 editProfilePopup.setEventListeners();
 
 //оpen via clicking on icon
@@ -98,7 +97,7 @@ function addElementFormSubmitHandler(data) {
 }
 
 //add element form
-const addElementPopup = new PopupWithForm('.popupAddElement', addElementFormSubmitHandler);
+const addElementPopup = new PopupWithForm('.popup_type_add-element', addElementFormSubmitHandler);
 addElementPopup.setEventListeners();
 
 //открытие по иконке
