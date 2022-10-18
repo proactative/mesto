@@ -96,6 +96,31 @@
     </div>
   </div>
 
+  <div class="popup popup_type_confirm-deletion 1popup_opened"> <!--стереть-->
+    <div class="popup__container">
+      <h2 class="popup__title popup__title_type_confirm-deletion">Вы уверены?</h2>
+      <button class="popup__button">Да</button>
+      <button class="popup__close popup__close_type_add-element" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
+
+  <div class="popup popup_type_update-avatar popup_opened">
+    <div class="popup__container">
+      <form name="update-avatar-form" action="#" class="popup__form popup__form_type_update-avatar" novalidate>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <fieldset class="popup__inputs">
+          <label class="popup__label">
+            <input class="popup__input popup__input_type_link" name="avatar-link" type="url" value="" id="avatar-link"
+              placeholder="https://somewebsite.com/someimage.jpg" required>
+            <span class="popup__error" id="place-link-error"></span>
+          </label>
+        </fieldset>
+        <button class="popup__button popup__button_type_update-avatar" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close popup__close_type_add-element" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
+
   <template class="template">
     <article class="element">
       <img class="element__image" src="#" alt="">
