@@ -7,6 +7,8 @@ import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import Section from '../scripts/components/Section.js';
 import UserInfo from '../scripts/components/UserInfo.js';
+import Api from '../scripts/components/Api.js';
+import PopupWithConfirmation from '../scripts/components/PopupWithConfirmation.js';
 
 import {
   editProfileButton,
@@ -97,3 +99,18 @@ addButton.addEventListener('click', () => {
   addFormValidation.resetValidation();
   addFormValidation.disableSubmitButton();
 });
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-52',
+  headers: {
+    authorization: '2d9ff2df-e659-4f7f-80c0-40ca2d274d7d',
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getInitialCards().then((data) => {
+
+})
+
+//popup for card deleting
+const popupWithConfirmation = new PopupWithConfirmation();
