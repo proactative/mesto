@@ -25,6 +25,7 @@ import {
   validationConfig,
   popupEditProfile,
   updateAvatarForm,
+  popupEditAvatar
 } from '../scripts/utils/constants.js';
 
 //validation
@@ -33,6 +34,9 @@ editFormValidation.enableValidation();
 
 const addFormValidation = new FormValidator(validationConfig, popupAddElement);
 addFormValidation.enableValidation();
+
+const updateAvatarFormValidation = new FormValidator(validationConfig, popupEditAvatar);
+updateAvatarFormValidation.enableValidation();
 
 //zoom photo
 const popupWithImage = new PopupWithImage('.popup_type_zoom-photo');
@@ -109,9 +113,9 @@ editProfileButton.addEventListener('click', () => {
 //open avatar-popup via clicking on pencil
 avatarButton.addEventListener('click', () => {
   popupWithFormForAvatar.open();
-
-  updateAvatarForm.resetValidation();
-  updateAvatarForm.disableSubmitButton();
+  updateAvatarForm.reset();
+  updateAvatarFormValidation.resetValidation();
+  updateAvatarFormValidation.disableSubmitButton();
 });
 
 //adding a new card
@@ -150,6 +154,7 @@ const userInfo = new UserInfo({ name: personField, job: jobField, avatar: avatar
 
 api.getUserInfo().then((data) => {
   userInfo.setUserInfo({ name: data.name, job: data.about, id: data._id});
+  userInfo.setAvatar(data.avatar);
 })
 
 //section
