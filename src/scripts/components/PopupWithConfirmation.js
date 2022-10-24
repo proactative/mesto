@@ -2,14 +2,12 @@ import Popup from './Popup.js';
 
 export default class PopupWithConfirmation extends Popup {
 
-  constructor(selector, callback) {
+  constructor(selector) {
     super(selector);
-    this._callback = callback;
-    this._confirmationButton = this._popup.querySelector(".popup__button");//или document
+    this._confirmationButton = this._popup.querySelector(".popup__button");
   }
 
-  open(data) {
-    //this._data = data;
+  open() {
     super.open();
   }
 
@@ -17,9 +15,20 @@ export default class PopupWithConfirmation extends Popup {
     super.close();
   }
 
+  setDeleteCardFromBrowserCallback(callback) {
+    this._deleteCardFromBrowserCallback = callback;
+  }
+
+  setDeleteCardFromServerCallback(callback) {
+    this._deleteCardFromServerCallback = callback;
+  }
+
   setEventListeners() {
     super.setEventListeners();
-    this._confirmationButton.addEventListener('click', this._callback(//какой агрумент?))
+    this._confirmationButton.addEventListener('click', () => {
+      this._deleteCardFromBrowserCallback();
+      this._deleteCardFromServerCallback();
+      this.close();
+    });
   }
 }
-

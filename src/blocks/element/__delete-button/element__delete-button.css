@@ -8,6 +8,7 @@
   width: 18px;
   height: 19px;
   cursor: pointer;
+  visibility: hidden;
 }
 
 .element__delete-button:hover {

@@ -1,6 +1,6 @@
 import './index.css';
 
-import { initialCards } from '../scripts/cards.js';
+//import { initialCards } from '../scripts/cards.js';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
@@ -14,14 +14,17 @@ import {
   editProfileButton,
   personField,
   jobField,
+  avatarField,
   nameInput,
   jobInput,
   addButton,
+  avatarButton,
   popupAddElement,
   templateElement,
   addElementForm,
   validationConfig,
   popupEditProfile,
+  updateAvatarForm,
 } from '../scripts/utils/constants.js';
 
 //validation
@@ -35,42 +38,63 @@ addFormValidation.enableValidation();
 const popupWithImage = new PopupWithImage('.popup_type_zoom-photo');
 popupWithImage.setEventListeners();
 
-function createCardElement(item) {
-const newCard = new Card(
-        item,
-        templateElement,
-        () => {
-          popupWithImage.open(item);
-        }
-      );
-      return newCard.createCard();
+//popup for card deleting
+const popupWithConfirmation = new PopupWithConfirmation(".popup_type_confirm-deletion");
+popupWithConfirmation.setEventListeners();
+
+//opening removing confirmation popup
+function showDeleteCardConfirmationPopup(deleteCardFromBrowserCallback, cardId) {
+  popupWithConfirmation.open();
+
+  popupWithConfirmation.setDeleteCardFromBrowserCallback(deleteCardFromBrowserCallback);
+  popupWithConfirmation.setDeleteCardFromServerCallback(() => api.deleteCard(cardId));
 }
 
-//section
-const section = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      section.addItem(createCardElement(item));
-    }
-  },
-  '.elements'
-);
-section.renderItems();
+//creating a new card
+function addLike(id) {
+  api.addLike(id)
+}
 
-//userInfo
-const userInfo = new UserInfo({ name: personField, job: jobField });
+function removeLike(id) {
+  api.deleteLike(id)
+}
 
+function createCardElement(item) {
+  const newCard = new Card(
+    item,
+    templateElement,
+    () => {
+      popupWithImage.open(item);
+    },
+    showDeleteCardConfirmationPopup,
+    userInfo.getId(),
+    addLike,
+    removeLike,
+  );
+  return newCard.createCard();
+}
+
+//edit avatar
+function changeAvatarSubmitFormHandler(url) {
+  api.updateAvatar(url['avatar-link']);
+  userInfo.setAvatar(url['avatar-link']);
+  popupWithFormForAvatar.close();
+}
+
+const popupWithFormForAvatar = new PopupWithForm('.popup_type_update-avatar', changeAvatarSubmitFormHandler);
+popupWithFormForAvatar.setEventListeners();
+
+//edit profile
 function editProfileFormSubmitHandler(formNewInfo) {
+  api.editProfile(formNewInfo["full-name"], formNewInfo.job);
   userInfo.setUserInfo({ name: formNewInfo["full-name"], job: formNewInfo.job });
   editProfilePopup.close();
 }
 
-//edit profile
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', editProfileFormSubmitHandler);
 editProfilePopup.setEventListeners();
 
-//оpen via clicking on icon
+//оpen edit-profile-popup via clicking on icon
 editProfileButton.addEventListener('click', () => {
   editProfilePopup.open();
 
@@ -82,13 +106,25 @@ editProfileButton.addEventListener('click', () => {
   editFormValidation.disableSubmitButton();
 });
 
+//open avatar-popup via clicking on pencil
+avatarButton.addEventListener('click', () => {
+  popupWithFormForAvatar.open();
+
+  updateAvatarForm.resetValidation();
+  updateAvatarForm.disableSubmitButton();
+});
+
+//adding a new card
 function addElementFormSubmitHandler(data) {
-  const newData = {name: data['place-name'], link: data['place-link']};
+  api.addCard(data['place-name'], data['place-link']);
+  const newData = {
+    name: data['place-name'],
+    link: data['place-link'],
+  };
   section.addItem(createCardElement(newData));
   addElementPopup.close();
 }
 
-//add element form
 const addElementPopup = new PopupWithForm('.popup_type_add-element', addElementFormSubmitHandler);
 addElementPopup.setEventListeners();
 
@@ -100,17 +136,37 @@ addButton.addEventListener('click', () => {
   addFormValidation.disableSubmitButton();
 });
 
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-52',
-  headers: {
+// new api
+const api = new Api(
+  'https://mesto.nomoreparties.co/v1/cohort-52',
+  {
     authorization: '2d9ff2df-e659-4f7f-80c0-40ca2d274d7d',
     'Content-Type': 'application/json'
   }
-});
+);
 
-api.getInitialCards().then((data) => {
+//userInfo
+const userInfo = new UserInfo({ name: personField, job: jobField, avatar: avatarField });
 
+api.getUserInfo().then((data) => {
+  userInfo.setUserInfo({ name: data.name, job: data.about, id: data._id});
 })
 
-//popup for card deleting
-const popupWithConfirmation = new PopupWithConfirmation();
+//section
+const section = new Section(
+  {
+    items: [],
+    renderer: (item) => {
+      section.addItem(createCardElement(item));
+    }
+  },
+  '.elements'
+);
+section.renderItems();
+
+api.getInitialCards().then((cards) => {
+  cards.forEach((card) => {
+
+    section.addItem(createCardElement(card));
+  });
+});
