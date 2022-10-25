@@ -10,6 +10,6 @@
   opacity: .4;
 }
 
-.profile__avatar-container:hover .profile__avatar-edit-button {
+.profile__avatar-container:hover .profile__avatar-edit-sign {
  visibility: visible;
 }

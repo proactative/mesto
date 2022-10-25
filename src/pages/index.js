@@ -18,7 +18,7 @@ import {
   nameInput,
   jobInput,
   addButton,
-  avatarButton,
+  avatarArea,
   popupAddElement,
   templateElement,
   addElementForm,
@@ -111,7 +111,7 @@ editProfileButton.addEventListener('click', () => {
 });
 
 //open avatar-popup via clicking on pencil
-avatarButton.addEventListener('click', () => {
+avatarArea.addEventListener('click', () => {
   popupWithFormForAvatar.open();
   updateAvatarForm.reset();
   updateAvatarFormValidation.resetValidation();
