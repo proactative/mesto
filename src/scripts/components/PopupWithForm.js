@@ -18,6 +18,14 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
+  close() {
+    super.close();
+    setTimeout(() => {
+      this._button.textContent = this._button.getAttribute('initialTextContent');
+    }, "700");
+
+  }
+
   setEventListeners() {
     super.setEventListeners();
 
@@ -25,6 +33,7 @@ export default class PopupWithForm extends Popup {
     form.addEventListener(
       'submit',
       () => {
+        this._button.setAttribute('initialTextContent', this._button.textContent);
         this._button.textContent = 'Сохранение...';
         this._formSubmit(this._getInputValues());
       }

@@ -120,13 +120,11 @@ avatarButton.addEventListener('click', () => {
 
 //adding a new card
 function addElementFormSubmitHandler(data) {
-  api.addCard(data['place-name'], data['place-link']);
-  const newData = {
-    name: data['place-name'],
-    link: data['place-link'],
-  };
-  section.addItem(createCardElement(newData));
-  addElementPopup.close();
+  api.addCard(data['place-name'], data['place-link'])
+  .then((data) => {                             //данные с сервера о новосозданной карточке
+    section.addItem(createCardElement(data));
+  })
+ .finally(() => addElementPopup.close());
 }
 
 const addElementPopup = new PopupWithForm('.popup_type_add-element', addElementFormSubmitHandler);
