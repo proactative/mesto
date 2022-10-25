@@ -19,7 +19,7 @@
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
-@import url(../blocks/profile/__avatar-edit-button/profile__avatar-edit-button.css);
+@import url(../blocks/profile/__avatar-edit-sign/profile__avatar-edit-sign.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__title-container/profile__title-container.css);
 @import url(../blocks/profile/__title/profile__title.css);

@@ -1,4 +1,4 @@
-.profile__avatar-edit-button {
+.profile__avatar-edit-sign {
   background-image: url('../../../images/profile-avatar-edit.svg');
   position: absolute;
   top: calc(50% - 13px);
