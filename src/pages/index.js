@@ -10,20 +10,20 @@ import Api from '../scripts/components/Api.js';
 import PopupWithConfirmation from '../scripts/components/PopupWithConfirmation.js';
 
 import {
-  editProfileButton,
+  profileEditButton,
   personField,
   jobField,
   avatarField,
   nameInput,
   jobInput,
-  addButton,
+  elementAddButton,
   avatarArea,
   popupAddElement,
   templateElement,
-  addElementForm,
+  elementAddForm,
   validationConfig,
   popupEditProfile,
-  updateAvatarForm,
+  avatarUpdateForm,
   popupEditAvatar
 } from '../scripts/utils/constants.js';
 
@@ -98,7 +98,7 @@ const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', editProfi
 editProfilePopup.setEventListeners();
 
 //оpen edit-profile-popup via clicking on icon
-editProfileButton.addEventListener('click', () => {
+profileEditButton.addEventListener('click', () => {
   editProfilePopup.open();
 
   const currentUserInfo = userInfo.getUserInfo();
@@ -112,7 +112,7 @@ editProfileButton.addEventListener('click', () => {
 //open avatar-popup via clicking on pencil
 avatarArea.addEventListener('click', () => {
   popupWithFormForAvatar.open();
-  updateAvatarForm.reset();
+  avatarUpdateForm.reset();
   updateAvatarFormValidation.resetValidation();
   updateAvatarFormValidation.disableSubmitButton();
 });
@@ -130,9 +130,9 @@ const addElementPopup = new PopupWithForm('.popup_type_add-element', addElementF
 addElementPopup.setEventListeners();
 
 //open via clicking on the icon
-addButton.addEventListener('click', () => {
+elementAddButton.addEventListener('click', () => {
   addElementPopup.open();
-  addElementForm.reset();
+  elementAddForm.reset();
   addFormValidation.resetValidation();
   addFormValidation.disableSubmitButton();
 });
