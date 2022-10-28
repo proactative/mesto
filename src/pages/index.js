@@ -50,16 +50,16 @@ function showDeleteCardConfirmationPopup(deleteCardFromBrowserCallback, cardId) 
   popupWithConfirmation.open();
 
   popupWithConfirmation.setDeleteCardFromBrowserCallback(deleteCardFromBrowserCallback);
-  popupWithConfirmation.setDeleteCardFromServerCallback(() => api.deleteCard(cardId));
+  popupWithConfirmation.setDeleteCardFromServerCallback(() => api.deleteCard(cardId).catch((err) => console.log(`Ошибка: ${err}`)));
 }
 
 //creating a new card
 function addLike(id) {
-  api.addLike(id)
+  api.addLike(id).catch((err) => console.log(`Ошибка: ${err}`));
 }
 
 function removeLike(id) {
-  api.deleteLike(id)
+  api.deleteLike(id).catch((err) => console.log(`Ошибка: ${err}`));
 }
 
 function createCardElement(item) {
@@ -79,9 +79,15 @@ function createCardElement(item) {
 
 //edit avatar
 function changeAvatarSubmitFormHandler(url) {
-  api.updateAvatar(url['avatar-link']);
-  userInfo.setAvatar(url['avatar-link']);
-  popupWithFormForAvatar.close();
+  api.updateAvatar(url['avatar-link'])
+    .then(() => {
+      userInfo.setAvatar(url['avatar-link']);
+      popupWithFormForAvatar.close();
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`))
+    .finally(() => {
+      popupWithFormForAvatar.setInitialButtonText();
+  });
 }
 
 const popupWithFormForAvatar = new PopupWithForm('.popup_type_update-avatar', changeAvatarSubmitFormHandler);
@@ -89,9 +95,15 @@ popupWithFormForAvatar.setEventListeners();
 
 //edit profile
 function editProfileFormSubmitHandler(formNewInfo) {
-  api.editProfile(formNewInfo["full-name"], formNewInfo.job);
-  userInfo.setUserInfo({ name: formNewInfo["full-name"], job: formNewInfo.job });
-  editProfilePopup.close();
+  api.editProfile(formNewInfo["full-name"], formNewInfo.job)
+    .then(() => {
+      userInfo.setUserInfo({ name: formNewInfo["full-name"], job: formNewInfo.job });
+      editProfilePopup.close();
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`))
+    .finally(() => {
+      editProfilePopup.setInitialButtonText();
+  });
 }
 
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', editProfileFormSubmitHandler);
@@ -122,11 +134,14 @@ function addElementFormSubmitHandler(data) {
   api.addCard(data['place-name'], data['place-link'])
     .then((data) => {                             //данные с сервера о новосозданной карточке
       section.addItem(createCardElement(data));
+      addElementPopup.close();
     })
-    .then(() => addElementPopup.close())
     .catch(err => console.log(`Ошибка: ${err}`))
-  // .finally
+    .finally(() => {
+      addElementPopup.setInitialButtonText();
+  });
 }
+
 
 const addElementPopup = new PopupWithForm('.popup_type_add-element', addElementFormSubmitHandler);
 addElementPopup.setEventListeners();
