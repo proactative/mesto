@@ -120,10 +120,12 @@ avatarArea.addEventListener('click', () => {
 //adding a new card
 function addElementFormSubmitHandler(data) {
   api.addCard(data['place-name'], data['place-link'])
-  .then((data) => {                             //данные с сервера о новосозданной карточке
-    section.addItem(createCardElement(data));
-  })
- .finally(() => addElementPopup.close());
+    .then((data) => {                             //данные с сервера о новосозданной карточке
+      section.addItem(createCardElement(data));
+    })
+    .then(() => addElementPopup.close())
+    .catch(err => console.log(`Ошибка: ${err}`))
+  // .finally
 }
 
 const addElementPopup = new PopupWithForm('.popup_type_add-element', addElementFormSubmitHandler);
@@ -146,14 +148,6 @@ const api = new Api(
   }
 );
 
-//userInfo
-const userInfo = new UserInfo({ name: personField, job: jobField, avatar: avatarField });
-
-api.getUserInfo().then((data) => {
-  userInfo.setUserInfo({ name: data.name, job: data.about, id: data._id});
-  userInfo.setAvatar(data.avatar);
-})
-
 //section
 const section = new Section(
   {
@@ -166,9 +160,22 @@ const section = new Section(
 );
 section.renderItems();
 
-api.getInitialCards().then((cards) => {
-  cards.forEach((card) => {
+//userInfo
+const userInfo = new UserInfo({ name: personField, job: jobField, avatar: avatarField });
 
-    section.addItem(createCardElement(card));
-  });
-});
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards(),
+])
+  .then((response) => {
+    const data = response[0];
+    const cards = response[1];
+
+    userInfo.setUserInfo({ name: data.name, job: data.about, id: data._id });
+    userInfo.setAvatar(data.avatar);
+
+    cards.forEach((card) => {
+      section.addItem(createCardElement(card));
+    })
+  })
+  .catch((err) => console.log(`Ошибка: ${err}`));
