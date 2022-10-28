@@ -65,7 +65,7 @@ function removeLike(id) {
 function createCardElement(item) {
   const newCard = new Card(
     item,
-    templateElement,
+    '.template',
     () => {
       popupWithImage.open(item);
     },

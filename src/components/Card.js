@@ -7,7 +7,7 @@ export default class Card {
     this._myId = myId;
     this._cardData = cardData;
     this._likesAmountNumber = cardData.likes.length;
-    this._templateSelector = templateSelector;
+    this._template = document.querySelector(templateSelector);
     this._handleCardClick = handleCardClick;
     this._handleConfirmationPopupOpen = handleConfirmationPopupOpen;
     this.createCard();
@@ -46,7 +46,7 @@ export default class Card {
 
   createCard() {
 
-    this._newCard = this._templateSelector.content.querySelector('.element').cloneNode(true);
+    this._newCard = this._template.content.querySelector('.element').cloneNode(true);
 
     this._newCardImage = this._newCard.querySelector('.element__image');
     this._newCardTitle = this._newCard.querySelector('.element__title');
