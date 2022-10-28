@@ -4,7 +4,7 @@ export default class PopupWithConfirmation extends Popup {
 
   constructor(selector) {
     super(selector);
-    this._confirmationButton = this._popup.querySelector(".popup__button");
+    this._form =this._popup.querySelector('.popup__form_confirm-delition');
   }
 
   open() {
@@ -25,7 +25,7 @@ export default class PopupWithConfirmation extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._confirmationButton.addEventListener('click', () => {
+    this._form.addEventListener('submit', () => {
       this._deleteCardFromBrowserCallback();
       this._deleteCardFromServerCallback();
       this.close();
