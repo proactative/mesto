@@ -25,7 +25,7 @@ export const nameInput = formEditProfile.querySelector('.popup__input_type_name'
 export const jobInput = formEditProfile.querySelector('.popup__input_type_job');
 
 /*template*/
-export const templateElement = document.querySelector('.template');
+// export const templateElement = document.querySelector('.template');
 
 export const validationConfig = {
   formSelector: '.popup__form',

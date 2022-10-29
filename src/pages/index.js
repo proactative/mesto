@@ -19,7 +19,6 @@ import {
   elementAddButton,
   avatarArea,
   popupAddElement,
-  templateElement,
   elementAddForm,
   validationConfig,
   popupEditProfile,
@@ -42,24 +41,38 @@ const popupWithImage = new PopupWithImage('.popup_type_zoom-photo');
 popupWithImage.setEventListeners();
 
 //popup for card deleting
-const popupWithConfirmation = new PopupWithConfirmation(".popup_type_confirm-deletion");
+const popupWithConfirmation = new PopupWithConfirmation(".popup_type_confirm-deletion", deleteCard);
 popupWithConfirmation.setEventListeners();
 
-//opening removing confirmation popup
-function showDeleteCardConfirmationPopup(deleteCardFromBrowserCallback, cardId) {
-  popupWithConfirmation.open();
+//opening removing confirmation popup and setting callback for
+function showDeleteCardConfirmationPopup(card) { //card = объект класса Card
+  popupWithConfirmation.open(card);
+}
 
-  popupWithConfirmation.setDeleteCardFromBrowserCallback(deleteCardFromBrowserCallback);
-  popupWithConfirmation.setDeleteCardFromServerCallback(() => api.deleteCard(cardId).catch((err) => console.log(`Ошибка: ${err}`)));
+function deleteCard(card) {
+  api.deleteCard(card.getCardId())
+    .then(() =>  {
+      card.deleteDomCard();
+      popupWithConfirmation.close();
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`));
 }
 
 //creating a new card
-function addLike(id) {
-  api.addLike(id).catch((err) => console.log(`Ошибка: ${err}`));
+function addLike(card) {
+  api.addLike(card.getCardId())
+    .then(() => {
+      card.toggleLike();
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`));
 }
 
-function removeLike(id) {
-  api.deleteLike(id).catch((err) => console.log(`Ошибка: ${err}`));
+function removeLike(card) {
+  api.deleteLike(card.getCardId())
+    .then(() => {
+      card.toggleLike();
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`));
 }
 
 function createCardElement(item) {
@@ -87,7 +100,7 @@ function changeAvatarSubmitFormHandler(url) {
     .catch((err) => console.log(`Ошибка: ${err}`))
     .finally(() => {
       popupWithFormForAvatar.setInitialButtonText();
-  });
+    });
 }
 
 const popupWithFormForAvatar = new PopupWithForm('.popup_type_update-avatar', changeAvatarSubmitFormHandler);
@@ -103,7 +116,7 @@ function editProfileFormSubmitHandler(formNewInfo) {
     .catch((err) => console.log(`Ошибка: ${err}`))
     .finally(() => {
       editProfilePopup.setInitialButtonText();
-  });
+    });
 }
 
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', editProfileFormSubmitHandler);
@@ -139,9 +152,8 @@ function addElementFormSubmitHandler(data) {
     .catch(err => console.log(`Ошибка: ${err}`))
     .finally(() => {
       addElementPopup.setInitialButtonText();
-  });
+    });
 }
-
 
 const addElementPopup = new PopupWithForm('.popup_type_add-element', addElementFormSubmitHandler);
 addElementPopup.setEventListeners();
