@@ -7,7 +7,7 @@ export default class Card {
     this._myId = myId;
     this._cardData = cardData;
     this._likesAmountNumber = cardData.likes.length;
-    this._templateSelector = templateSelector;
+    this._template = document.querySelector(templateSelector);
     this._handleCardClick = handleCardClick;
     this._handleConfirmationPopupOpen = handleConfirmationPopupOpen;
     this.createCard();
@@ -16,15 +16,26 @@ export default class Card {
     this._likeIsMine = false;
   }
 
-  _toggleLike() {
+  getCardId() {
+    return this._cardId;
+  }
+
+  _runApiLikeRequest() {
+    if (this._newCardLikeButton.classList.contains('element__like_active')) {
+      this._handleDislikeCallback(this);
+    } else {
+      this._handleLikeCallback(this);
+    }
+  }
+
+  toggleLike() {
     this._newCardLikeButton.classList.toggle('element__like_active');
 
     if (this._newCardLikeButton.classList.contains('element__like_active')) {
       this._likesAmountElement.textContent = this._likesAmountNumber += 1;
-      this._handleLikeCallback(this._cardId);
+
     } else {
       this._likesAmountElement.textContent = this._likesAmountNumber -= 1;
-      this._handleDislikeCallback(this._cardId);
     }
   }
 
@@ -36,8 +47,9 @@ export default class Card {
     });
   }
 
-  deleteCard() {
+  deleteDomCard() {
     this._newCard.remove();
+    this._newCard = null;
   }
 
   _handleThisCardClick() {
@@ -45,8 +57,7 @@ export default class Card {
   }
 
   createCard() {
-
-    this._newCard = this._templateSelector.content.querySelector('.element').cloneNode(true);
+    this._newCard = this._template.content.querySelector('.element').cloneNode(true);
 
     this._newCardImage = this._newCard.querySelector('.element__image');
     this._newCardTitle = this._newCard.querySelector('.element__title');
@@ -65,16 +76,15 @@ export default class Card {
     }
 
     this._newCardImage.addEventListener('click', () => this._handleThisCardClick());
-    this._newCardLikeButton.addEventListener('click', () => this._toggleLike());
+    this._newCardLikeButton.addEventListener('click', () => this._runApiLikeRequest());
 
     //show confirmation-popup before deleting card
     if (this._ownerId == this._myId) {
       this._newCardDeleteButton.classList.add('element__delete-button_visible');
       this._newCardDeleteButton.addEventListener('click', () => {
-        this._handleConfirmationPopupOpen(() => this.deleteCard(), this._cardId);
+        this._handleConfirmationPopupOpen(this);
       });
     }
-
     return this._newCard;
   }
 }
