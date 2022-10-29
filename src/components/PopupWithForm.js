@@ -19,10 +19,6 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
-  close() {
-    super.close();
-  }
-
   setInitialButtonText() {
     setTimeout(() => {
       this._button.textContent = this._button.getAttribute('initialTextContent');
