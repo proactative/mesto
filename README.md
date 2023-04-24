@@ -41,5 +41,4 @@ It is also possible to view the photographs enlarged.
 
 [Demo](https://proactative.github.io/mesto/)
 
-## **QR-код**
 <img src="http://qrcoder.ru/code/?https%3A%2F%2Fproactative.github.io%2Fmesto%2F&4&0" width="148" height="148" border="0" title="QR код">
