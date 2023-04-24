@@ -1,4 +1,4 @@
-# Project: "Mesto"
+# Project "Mesto"
 ![shield](https://img.shields.io/badge/status-release-brightgreen)
 ![shield](https://img.shields.io/badge/version-1.0.0-blue)
 
